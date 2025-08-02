@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rekhansh Raje Deshmukh Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0f0f0f;
+            --bg-secondary: rgba(26, 26, 26, 0.7);
+            --bg-card: rgba(34, 34, 34, 0.7);
+            --text-primary: #ffffff;
+            --text-secondary: #e0e0e0;
+            --accent: #6366f1;
+            --accent-hover: #818cf8;
+            --border: rgba(255, 255, 255, 0.1);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.4;
+            overflow: hidden;
+            height: 100vh;
+            background-image: url('https://images7.alphacoders.com/355/thumb-1920-355464.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+        /* Frost Effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(173, 216, 230, 0.2) 0%, 
+                rgba(135, 206, 235, 0.15) 25%, 
+                rgba(176, 224, 230, 0.2) 50%, 
+                rgba(175, 238, 238, 0.15) 75%, 
+                rgba(224, 255, 255, 0.2) 100%);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: -1;
+            animation: frostShift 20s ease-in-out infinite;
+        }
+        @keyframes frostShift {
+            0%, 100% {
+                background: linear-gradient(135deg, 
+                    rgba(173, 216, 230, 0.2) 0%, 
+                    rgba(135, 206, 235, 0.15) 25%, 
+                    rgba(176, 224, 230, 0.2) 50%, 
+                    rgba(175, 238, 238, 0.15) 75%, 
+                    rgba(224, 255, 255, 0.2) 100%);
+            }
+            50% {
+                background: linear-gradient(135deg, 
+                    rgba(224, 255, 255, 0.2) 0%, 
+                    rgba(173, 216, 230, 0.15) 25%, 
+                    rgba(135, 206, 235, 0.2) 50%, 
+                    rgba(176, 224, 230, 0.15) 75%, 
+                    rgba(175, 238, 238, 0.2) 100%);
+            }
+        }
+        /* Frost Particles */
+        .frost-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .frost-particle {
+            position: absolute;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: float 15s infinite linear;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 1;
+        }
+        /* Navigation */
+        nav {
+            background-color: rgba(15, 15, 15, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 12px 0;
+            flex-shrink: 0;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+        /* Main Content */
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            padding: 20px 0;
+        }
+        /* Bento Grid */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: minmax(80px, auto);
+            gap: 12px;
+            width: 100%;
+            height: 100%;
+            max-height: calc(100vh - 100px);
+        }
+        .bento-item {
+            background-color: rgba(34, 34, 34, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 12px;
+            padding: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        .bento-item::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                rgba(173, 216, 230, 0.3), 
+                rgba(135, 206, 235, 0.2), 
+                rgba(176, 224, 230, 0.3));
+            border-radius: 12px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+        .bento-item:hover::before {
+            opacity: 1;
+        }
+        .bento-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+            background-color: rgba(34, 34, 34, 0.85);
+        }
+        /* Scrollable Cards */
+        .scrollable {
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent) var(--bg-secondary);
+        }
+        .scrollable::-webkit-scrollbar {
+            width: 6px;
+        }
+        .scrollable::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+            border-radius: 3px;
+        }
+        .scrollable::-webkit-scrollbar-thumb {
+            background-color: var(--accent);
+            border-radius: 3px;
+        }
+        .scrollable::-webkit-scrollbar-thumb:hover {
+            background-color: var(--accent-hover);
+        }
+        /* Workspace Photo Card - Left Side */
+        .workspace-card {
+            grid-column: span 4;
+            grid-row: span 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .workspace-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+        .workspace-card:hover img {
+            transform: scale(1.05);
+        }
+        .workspace-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 40px 20px;
+            color: white;
+        }
+        .workspace-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .workspace-subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+        /* Hero Section */
+        .hero {
+            grid-column: 5 / span 4;
+            grid-row: 1 / span 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .hero-photo {
+            width: 100%;
+            height: 120px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+        .hero h1 {
+            font-size: 2rem;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .hero .subtitle {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        .hero .description {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            font-size: 0.85rem;
+        }
+        .hero .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 15px;
+        }
+        .tag {
+            background-color: var(--bg-secondary);
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+        .available-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(34,197,94,0.15); /* green background */
+            color: #22c55e; /* green text */
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            width: fit-content;
+            font-size: 0.8rem;
+        }
+        .available-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background-color: #22c55e;
+            border-radius: 50%;
+            margin-right: 6px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.9); /* bright green */
+            }
+            70% {
+                box-shadow: 0 0 0 12px rgba(34, 197, 94, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+            }
+        }
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            width: fit-content;
+            font-size: 0.85rem;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+        .btn:hover {
+            background-color: var(--accent-hover);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+        }
+        /* Social Grid - Two Rows */
+        .social-grid {
+            grid-column: 1 / span 4;
+            grid-row: 3 / span 1;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 8px;
+        }
+        .social-item {
+            background-color: rgba(26, 26, 26, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 22px 0 16px 0;
+            min-height: 90px;
+            text-align: center;
+            transition: transform 0.3s, background-color 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--text-primary);
+            position: relative;
+            overflow: hidden;
+        }
+        .social-item::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                rgba(173, 216, 230, 0.3), 
+                rgba(135, 206, 235, 0.2), 
+                rgba(176, 224, 230, 0.3));
+            border-radius: 8px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+        .social-item:hover::before {
+            opacity: 1;
+        }
+        .social-item:hover {
+            transform: translateY(-2px);
+            background-color: rgba(26, 26, 26, 0.85);
+        }
+        .social-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+            color: var(--accent);
+            position: relative;
+            z-index: 1;
+        }
+        .social-name {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            position: relative;
+            z-index: 1;
+            font-weight: 600;
+        }
+        /* Skills - Above Projects */
+        .skills {
+            grid-column: span 4;
+            grid-row: span 1;
+            position: relative;
+            overflow: hidden;
+        }
+        .skills::before,
+        .skills::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s;
+        }
+        .skills::before {
+            background: url('./src/assets/technical_skills.png') center/cover no-repeat;
+            z-index: 0;
+        }
+        .skills::after {
+            background: rgba(0,0,0,0.55);
+            z-index: 1;
+        }
+        .skills:hover::before,
+        .skills:hover::after {
+            opacity: 1;
+        }
+        .skills > * {
+            position: relative;
+            z-index: 2;
+        }
+        .skills::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('./src/assets/technical_skills.png') center/cover no-repeat;
+            opacity: 0;
+            z-index: 0;
+            pointer-events: none;
+            transition: opacity 0.4s;
+        }
+        .skills:hover::before {
+            opacity: 1;
+        }
+        .skills > * {
+            position: relative;
+            z-index: 1;
+        }
+        .skills h2 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+        .skills::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.55);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: 1;
+        }
+        .skills:hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('./src/assets/technical_skills.png') center/cover no-repeat;
+            z-index: 0;
+            opacity: 1;
+            transition: opacity 0.4s;
+        }
+        .skills:hover::after {
+            opacity: 1;
+        }
+        .skills > * {
+            position: relative;
+            z-index: 2;
+        }
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .skill-item {
+            background-color: var(--bg-secondary);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            transition: transform 0.3s, background-color 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .skill-item::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background:black;
+            border-radius: 8px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+        .skill-item:hover::before {
+            opacity: 1;
+        }
+        .skill-item:hover {
+            transform: translateY(-2px);
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        /* Projects - Moved to Right Side */
+        .projects {
+            grid-column: 9 / span 4;
+            grid-row: span 1;
+            max-height: 700px;
+            height: 500px;
+        }
+        .projects h2 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        .project-card {
+            background-color: rgba(26, 26, 26, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 20px;
+            height: 140px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s, background-color 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                rgba(0, 0, 0, 0.3), 
+                rgba(0, 0, 0, 0.2), 
+                rgba(22, 22, 22, 0.3));
+            border-radius: 12px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+        .project-card:hover::before {
+            opacity: 1;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            background-color: rgba(0, 0, 0, 0.85);
+        }
+        .project-card a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+        }
+        .project-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        .project-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+        .project-description {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            flex-grow: 1;
+            line-height: 1.4;
+        }
+        .project-category {
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+        .project-link {
+            margin-left: 10px;
+            width: 32px;
+            height: 32px;
+            background-color: rgba(99, 102, 241, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            transition: background-color 0.3s;
+            z-index: 1;
+            position: static;
+        }
+        .project-link:hover {
+            background-color: var(--accent);
+            color: rgb(0, 0, 0);
+        }
+        /* Achievements - Moved to Left Side */
+        .achievements {
+            grid-column: span 4;
+            grid-row: span 1;
+        }
+        .achievements h2 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            color: #ffffff;
+        }
+        .achievements-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .achievement-item {
+            background-color: rgba(26, 26, 26, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s, background-color 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .achievement-item::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                rgba(173, 216, 230, 0.3), 
+                rgba(135, 206, 235, 0.2), 
+                rgba(176, 224, 230, 0.3));
+            border-radius: 8px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+        .achievement-item:hover::before {
+            opacity: 1;
+        }
+        .achievement-item:hover {
+            transform: translateY(-3px);
+            background-color: rgba(26, 26, 26, 0.85);
+        }
+        .achievement-icon {
+            width: 45px;
+            height: 45px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+        .achievement-content {
+            position: relative;
+            z-index: 1;
+        }
+        .achievement-content h3 {
+            font-size: 1rem;
+            margin-bottom: 3px;
+            font-weight: 600;
+            color: #fff;
+        }
+        .achievement-content p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            border-top: 1px solid var(--border);
+            flex-shrink: 0;
+            background-color: rgba(15, 15, 15, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        /* GitHub Activity Card - No Scrollbars */
+        .github-activity-card {
+            overflow: hidden !important;
+            scrollbar-width: none !important;
+            -ms-overflow-style: none !important;
+        }
+        .github-activity-card::-webkit-scrollbar {
+            display: none !important;
+        }
+        .github-activity-card iframe {
+            display: block;
+            width: 100% !important;
+            height: 100% !important;
+        }
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .bento-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+            
+            .workspace-card,
+            .hero,
+            .social-grid,
+            .skills,
+            .projects,
+            .achievements {
+                grid-column: span 6;
+            }
+            .workspace-card {
+                grid-row: span 2;
+            }
+            .hero {
+                grid-row: span 1;
+            }
+            .social-grid {
+                grid-row: span 1;
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: repeat(2, 1fr);
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 700px) {
+            html, body {
+                font-size: 15px;
+            }
+            .container {
+                padding: 0 4px;
+                height: auto;
+                min-height: 100vh;
+            }
+            main {
+                padding: 8px 0;
+            }
+            .bento-grid {
+                grid-template-columns: 1fr;
+                grid-auto-rows: minmax(60px, auto);
+                gap: 8px;
+                max-height: none;
+                height: auto;
+            }
+            .bento-item {
+                grid-column: 1 !important;
+                grid-row: auto !important;
+                min-width: 0;
+            }
+            .workspace-card, .hero, .social-grid, .skills, .projects, .achievements, .right-of-social {
+                grid-column: 1 !important;
+                grid-row: auto !important;
+                min-width: 0;
+            }
+            .workspace-card {
+                min-height: 180px;
+            }
+            .workspace-card img {
+                border-radius: 6px;
+            }
+            .workspace-overlay {
+                padding: 18px 10px;
+            }
+            .workspace-title {
+                font-size: 1.1rem;
+            }
+            .hero h1 {
+                font-size: 1.2rem;
+            }
+            .hero .subtitle {
+                font-size: 1rem;
+                color: #fff;
+            }
+            .hero .tags {
+                gap: 4px;
+            }
+            .btn {
+                padding: 7px 12px;
+                font-size: 0.9rem;
+            }
+            .available-badge {
+                font-size: 0.75rem;
+                color: #6366f1;
+                padding: 4px 8px;
+            }
+            .social-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(4, 1fr);
+                gap: 6px;
+            }
+            .social-item {
+                min-height: 60px;
+                font-size: 0.95rem;
+                padding: 12px 0 10px 0;
+            }
+            .social-icon {
+                font-size: 1.3rem;
+                margin-bottom: 4px;
+            }
+            .social-name {
+                font-size: 0.95rem;
+            }
+            .skills h2, .achievements h2, .projects h2 {
+                font-size: 1.1rem;
+                margin-bottom: 10px;
+            }
+            .skill-list {
+                gap: 4px;
+            }
+            .skill-item {
+                font-size: 0.8rem;
+                padding: 4px 8px;
+                color: #6366f1;
+            }
+            .achievements-list {
+                gap: 8px;
+            }
+            .achievement-item {
+                padding: 10px;
+            }
+            .achievement-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 0.9rem;
+                color: #fff;
+                margin-right: 8px;
+            }
+            .achievement-content h3 {
+                font-size: 0.9rem;
+            }
+            .achievement-content p {
+                font-size: 0.8rem;
+            }
+            .projects {
+                height: auto;
+                max-height: none;
+            }
+            .projects-grid {
+                gap: 8px;
+            }
+            .project-card {
+                padding: 12px;
+                height: auto;
+            }
+            .project-title-row {
+                margin-bottom: 4px;
+            }
+            .project-title {
+                font-size: 1rem;
+            }
+            .project-description {
+                font-size: 0.8rem;
+                margin-bottom: 6px;
+            }
+            .project-category {
+                font-size: 0.75rem;
+            }
+            .project-link {
+                width: 24px;
+                height: 24px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Frost Particles -->
+    <div class="frost-particles" id="frostParticles"></div>
+    
+    <div class="container">
+        <!-- nav removed -->
+        <main>
+            <div class="bento-grid">
+                <!-- Workspace Photo Card - Left Side -->
+                <div class="bento-item workspace-card">
+                    <video src="./src/assets/Creative_workspace_animation .mp4" autoplay loop muted playsinline poster="https://picsum.photos/seed/workspace/600/600.jpg" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:8px;"></video>
+                    <div class="workspace-overlay">
+                    <!-- add overlay items-->
+                    </div>
+                </div>
+                <!-- Social Grid - Directly below workspace card -->
+                <div class="social-grid">
+                    <!-- First Row -->
+                    <a href="https://twitter.com/pragadeswaran" target="_blank" class="social-item">
+                        <i class="fab fa-twitter social-icon"></i>
+                        <div class="social-name">Twitter</div>
+                    </a>
+                    <a href="https://linkedin.com/in/pragadeswaran" target="_blank" class="social-item">
+                        <i class="fab fa-linkedin social-icon"></i>
+                        <div class="social-name">LinkedIn</div>
+                    </a>
+                    <a href="https://github.com/pragadeswaran" target="_blank" class="social-item">
+                        <i class="fab fa-github social-icon"></i>
+                        <div class="social-name">GitHub</div>
+                    </a>
+                    <a href="https://dribbble.com/pragadeswaran" target="_blank" class="social-item">
+                        <i class="fab fa-dribbble social-icon"></i>
+                        <div class="social-name">Dribbble</div>
+                    </a>
+                    <!-- Second Row -->
+                    <a href="https://instagram.com/pragadeswaran" target="_blank" class="social-item">
+                        <i class="fab fa-instagram social-icon"></i>
+                        <div class="social-name">Instagram</div>
+                    </a>
+                    <a href="https://behance.net/pragadeswaran" target="_blank" class="social-item">
+                        <i class="fab fa-behance social-icon"></i>
+                        <div class="social-name">Behance</div>
+                    </a>
+                    <a href="https://youtube.com/pragadeswaran" target="_blank" class="social-item">
+                        <i class="fab fa-youtube social-icon"></i>
+                        <div class="social-name">YouTube</div>
+                    </a>
+                    <a href="https://facebook.com/pragadeswaran" target="_blank" class="social-item">
+                        <i class="fab fa-facebook social-icon"></i>
+                        <div class="social-name">Facebook</div>
+                    </a>
+                </div>
+                <!-- GitHub Activity Widget - Bottom Mid, Right of Social Grid -->
+                
+                <!-- Card to the Right Side of Social Grid -->
+                <div class="bento-item right-of-social" style="grid-column: 5 / span 4; grid-row: 3 / span 1; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 120px;">
+                    <h2 style="font-size: 1.1rem; color: var(--accent); margin-bottom: 10px;">Online Badges</h2>
+                    <div class="badge-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(70px, 1fr)); gap: 14px; width: 100%; justify-items: center; align-items: center;">
+                        <a href="https://react.dev/" target="_blank" rel="noopener" class="badge-item" style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">
+                            <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React Badge" style="width: 60px; height: 60px; object-fit: contain; border-radius: 8px; margin-bottom: 6px; background: #222;" />
+                            <span style="font-size: 0.8rem; color: var(--text-secondary);">React</span>
+                        </a>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noopener" class="badge-item" style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">
+                            <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript Badge" style="width: 60px; height: 60px; object-fit: contain; border-radius: 8px; margin-bottom: 6px; background: #222;" />
+                            <span style="font-size: 0.8rem; color: var(--text-secondary);">JavaScript</span>
+                        </a>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" rel="noopener" class="badge-item" style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">
+                            <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5 Badge" style="width: 60px; height: 60px; object-fit: contain; border-radius: 8px; margin-bottom: 6px; background: #222;" />
+                            <span style="font-size: 0.8rem; color: var(--text-secondary);">HTML5</span>
+                        </a>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" rel="noopener" class="badge-item" style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">
+                            <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3 Badge" style="width: 60px; height: 60px; object-fit: contain; border-radius: 8px; margin-bottom: 6px; background: #222;" />
+                            <span style="font-size: 0.8rem; color: var(--text-secondary);">CSS3</span>
+                        </a>
+                        <a href="https://nodejs.org/" target="_blank" rel="noopener" class="badge-item" style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">
+                            <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js Badge" style="width: 60px; height: 60px; object-fit: contain; border-radius: 8px; margin-bottom: 6px; background: #222;" />
+                            <span style="font-size: 0.8rem; color: var(--text-secondary);">Node.js</span>
+                        </a>
+                        <a href="https://www.figma.com/" target="_blank" rel="noopener" class="badge-item" style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">
+                            <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white" alt="Figma Badge" style="width: 60px; height: 60px; object-fit: contain; border-radius: 8px; margin-bottom: 6px; background: #222;" />
+                            <span style="font-size: 0.8rem; color: var(--text-secondary);">Figma</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- Hero Section -->
+                <div class="bento-item hero scrollable" id="about">
+                    
+                    <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 10px;">
+                        <h1 style="margin-bottom: 0; margin-top: 2px;">Rekhansh Raje Deshmukh</h1>
+                        <a href="resume.pdf" class="btn" target="_blank" rel="noopener">Resume</a>
+                        <div class="available-badge" style="margin-bottom: 0;">Available To Work</div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 10px; flex-wrap: wrap;">
+                        <div class="subtitle" style="margin-bottom: 0;">I'm a Developer</div>
+                        <div class="tags" style="margin-bottom: 0;">
+                            <span class="tag">India</span>
+                            <span class="tag">Data</span>
+                            <span class="tag">AI</span>
+                        </div>
+                    </div>
+                    <p class="description">Creating beautiful digital experiences with user-centered design. Passionate about crafting intuitive interfaces that solve real problems and delight users.</p>
+                    
+                </div>
+                <!-- Skills - Above Projects -->
+                <div class="bento-item skills scrollable">
+                    <h2>Technical Skills</h2>
+                    <div class="skill-list">
+                        <div class="skill-item">Figma</div>
+                        <div class="skill-item">Webflow</div>
+                        <div class="skill-item">Framer</div>
+                        <div class="skill-item">HTML/CSS</div>
+                        <div class="skill-item">JavaScript</div>
+                        <div class="skill-item">React</div>
+                        <div class="skill-item">Vue.js</div>
+                        <div class="skill-item">Node.js</div>
+                        <div class="skill-item">TypeScript</div>
+                        <div class="skill-item">Tailwind CSS</div>
+                        <div class="skill-item">SEO</div>
+                        <div class="skill-item">Photoshop</div>
+                        <div class="skill-item">Illustrator</div>
+                        <div class="skill-item">After Effects</div>
+                    </div>
+                </div>
+                <!-- Achievements - Moved to Left Side -->
+                <div class="bento-item achievements scrollable">
+    <h2>Certifications</h2>
+    <div class="achievements-list">
+        <a href="https://example.com/cert/design-excellence" target="_blank" rel="noopener" class="achievement-item" style="text-decoration:none;">
+            <div class="achievement-icon" style="background: #fff;">
+                <img src="https://onedata.ai/wp-content/uploads/2024/02/partner-oracle.png" alt="Design Excellence Logo" style="width: 32px; height: 32px; object-fit: contain;" />
+            </div>
+            <div class="achievement-content">
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+                    <h3 style="margin-bottom: 0;">Oracle Data Science Professional</h3>
+                    <span class="project-link" style="margin-left: 0; width: 26px; height: 26px; min-width: 0; min-height: 0; font-size: 0.95rem;">
+                        <i class="fas fa-external-link-alt"></i>
+                    </span>
+                </div>
+                <p>Best UI Design Award 2022</p>
+            </div>
+        </a>
+        <a href="https://example.com/cert/client-satisfaction" target="_blank" rel="noopener" class="achievement-item" style="text-decoration:none;">
+            <div class="achievement-icon" style="background: #fff;">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJg75LWB1zIJt1VTZO7O68yKciaDSkk3KMdw&s" alt="Client Satisfaction Logo" style="width: 32px; height: 32px; object-fit: contain;" />
+            </div>
+            <div class="achievement-content">
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+                    <h3 style="margin-bottom: 0;">Bits and Bytes </h3>
+                    <span class="project-link" style="margin-left: 0; width: 26px; height: 26px; min-width: 0; min-height: 0; font-size: 0.95rem;">
+                        <i class="fas fa-external-link-alt"></i>
+                    </span>
+                </div>
+                <p>About Networking </p>
+            </div>
+        </a>
+        <a href="https://example.com/cert/fast-delivery" target="_blank" rel="noopener" class="achievement-item" style="text-decoration:none;">
+            <div class="achievement-icon" style="background: #fff;">
+                <img src="https://toppng.com/uploads/preview/nvidia-logo-vector-11574170524xza1ggbhhk.png" alt="Fast Delivery Logo" style="width: 32px; height: 32px; object-fit: contain;" />
+            </div>
+            <div class="achievement-content">
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+                    <h3 style="margin-bottom: 0;">Nvidia Accelerated Data Science Workflow</h3>
+                    <span class="project-link" style="margin-left: 0; width: 26px; height: 26px; min-width: 0; min-height: 0; font-size: 0.95rem;">
+                        <i class="fas fa-external-link-alt"></i>
+                    </span>
+                </div>
+                <p>Polars</p>
+            </div>
+        </a>
+        <a href="https://example.com/cert/top-rated" target="_blank" rel="noopener" class="achievement-item" style="text-decoration:none;">
+            <div class="achievement-icon" style="background: #fff;">
+                <img src="https://eltnews.gr/wp-content/uploads/2024/09/460536655_2625057284334557_4044762822394026993_n.jpg" alt="Top Rated Logo" style="width: 32px; height: 32px; object-fit: contain;" />
+            </div>
+            <div class="achievement-content">
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+                    <h3 style="margin-bottom: 0;">Cambridge English B2 </h3>
+                    <span class="project-link" style="margin-left: 0; width: 26px; height: 26px; min-width: 0; min-height: 0; font-size: 0.95rem;">
+                        <i class="fas fa-external-link-alt"></i>
+                    </span>
+                </div>
+                <p>5-star rating on platforms</p>
+            </div>
+        </a>
+    </div>
+                </div>
+                <!-- Projects - Moved to Right Side -->
+                <div class="bento-item projects scrollable" id="portfolio">
+                    <h2>
+                        Featured Projects
+                        <span style="font-size: 0.8rem; color: var(--text-secondary); font-weight: 400;">Click to view</span>
+                    </h2>
+                    <div class="projects-grid">
+                        <div class="project-card">
+                            <a href="https://example.com/nathan-portfolio" target="_blank">
+                        <div class="project-title-row">
+                            <div class="project-title">Nathan Portfolio</div>
+                            <div class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </div>
+                        </div>
+                        <div class="project-tags" style="display: flex; gap: 6px; margin-bottom: 8px; flex-wrap: wrap;">
+                            <span class="tag">Portfolio</span>
+                            <span class="tag">Animation</span>
+                            <span class="tag">Responsive</span>
+                        </div>
+                        <div class="project-description">A modern portfolio website showcasing creative work with smooth animations and responsive design.</div>
+                        <div class="project-category">Web Design</div>
+                            </a>
+                        </div>
+                        <div class="project-card">
+                            <a href="https://example.com/nexgen-agency" target="_blank">
+                        <div class="project-title-row">
+                            <div class="project-title">NexGen Agency</div>
+                            <div class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </div>
+                        </div>
+                        <div class="project-tags" style="display: flex; gap: 6px; margin-bottom: 8px; flex-wrap: wrap;">
+                            <span class="tag">Agency</span>
+                            <span class="tag">Redesign</span>
+                            <span class="tag">Marketing</span>
+                        </div>
+                        <div class="project-description">Complete website redesign for a digital marketing agency with improved loading speed and conversion rates.</div>
+                        <div class="project-category">Web Dev</div>
+                            </a>
+                        </div>
+                        <div class="project-card">
+                            <a href="https://example.com/tech-startup" target="_blank">
+                        <div class="project-title-row">
+                            <div class="project-title">Tech Startup</div>
+                            <div class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </div>
+                        </div>
+                        <div class="project-tags" style="display: flex; gap: 6px; margin-bottom: 8px; flex-wrap: wrap;">
+                            <span class="tag">Startup</span>
+                            <span class="tag">Fintech</span>
+                            <span class="tag">App</span>
+                        </div>
+                        <div class="project-description">Mobile app UI/UX design for a fintech startup with intuitive user flows and polished design system.</div>
+                        <div class="project-category">UI/UX</div>
+                            </a>
+                        </div>
+                        <div class="project-card">
+                            <a href="https://example.com/ecommerce" target="_blank">
+                        <div class="project-title-row">
+                            <div class="project-title">E-commerce Platform</div>
+                            <div class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </div>
+                        </div>
+                        <div class="project-tags" style="display: flex; gap: 6px; margin-bottom: 8px; flex-wrap: wrap;">
+                            <span class="tag">E-commerce</span>
+                            <span class="tag">Full-stack</span>
+                            <span class="tag">Payments</span>
+                        </div>
+                        <div class="project-description">Full-stack e-commerce solution with advanced filtering, payment integration, and admin dashboard.</div>
+                        <div class="project-category">Web Dev</div>
+                            </a>
+                        </div>
+                        <div class="project-card">
+                            <a href="https://example.com/mobile-app" target="_blank">
+                        <div class="project-title-row">
+                            <div class="project-title">Fitness App</div>
+                            <div class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </div>
+                        </div>
+                        <div class="project-tags" style="display: flex; gap: 6px; margin-bottom: 8px; flex-wrap: wrap;">
+                            <span class="tag">Fitness</span>
+                            <span class="tag">Mobile</span>
+                            <span class="tag">Tracking</span>
+                        </div>
+                        <div class="project-description">Mobile app design for fitness tracking with workout planning and progress visualization.</div>
+                        <div class="project-category">UI/UX</div>
+                            </a>
+                        </div>
+                        <div class="project-card">
+                            <a href="https://example.com/corporate-site" target="_blank">
+                        <div class="project-title-row">
+                            <div class="project-title">Corporate Website</div>
+                            <div class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </div>
+                        </div>
+                        <div class="project-tags" style="display: flex; gap: 6px; margin-bottom: 8px; flex-wrap: wrap;">
+                            <span class="tag">Corporate</span>
+                            <span class="tag">Brand</span>
+                            <span class="tag">Accessibility</span>
+                        </div>
+                        <div class="project-description">Professional website for a multinational corporation focused on brand consistency and accessibility.</div>
+                        <div class="project-category">Web Design</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- footer removed -->
+    </div>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                }
+            });
+        });
+        // Add animation on load
+        window.addEventListener('load', () => {
+            const items = document.querySelectorAll('.bento-item');
+            items.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.opacity = 1;
+                    item.style.transform = 'translateY(0)';
+                }, index * 50);
+            });
+        });
+        // Set initial state for animation
+        document.querySelectorAll('.bento-item').forEach(item => {
+            item.style.opacity = 0;
+            item.style.transform = 'translateY(10px)';
+            item.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+        });
+        // Add hover effect for scrollable cards
+        document.querySelectorAll('.scrollable').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.cursor = 'grab';
+            });
+            
+            card.addEventListener('mousedown', function() {
+                this.style.cursor = 'grabbing';
+            });
+            
+            card.addEventListener('mouseup', function() {
+                this.style.cursor = 'grab';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.cursor = 'default';
+            });
+        });
+        // Create frost particles
+        function createFrostParticles() {
+            const container = document.getElementById('frostParticles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'frost-particle';
+                
+                // Random size
+                const size = Math.random() * 6 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                
+                // Random animation delay
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                
+                // Random animation duration
+                particle.style.animationDuration = `${Math.random() * 10 + 15}s`;
+                
+                container.appendChild(particle);
+            }
+        }
+        
+        // Initialize frost particles
+        createFrostParticles();
+    </script>
+</body>
+</html>
