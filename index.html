@@ -7,6 +7,63 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+    /* Optimization: Move loading window and video styles to CSS */
+    .loading-window {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(15,15,15,0.97);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.5s;
+        opacity: 1;
+        overflow: hidden;
+    }
+    .loading-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        z-index: 1;
+    }
+    .loading-message-container {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+        height: 100vh;
+    }
+    .loading-message {
+        color: #fff;
+        font-size: 2.1rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-shadow: 0 2px 12px #000;
+        margin-top: 0;
+    }
+    .workspace-video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        border-radius: 8px;
+    }
+    .social-img {
+        object-fit: contain;
+        margin-bottom: 8px;
+        border-radius: 4px;
+    }
+    </style>
+    <style>
         :root {
             --bg-primary: #0f0f0f;
             --bg-secondary: rgba(26, 26, 26, 0.7);
@@ -948,10 +1005,10 @@
 </head>
 <body>
     <!-- Loading Window -->
-    <div id="loadingWindow" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(15,15,15,0.97);z-index:99999;display:flex;align-items:center;justify-content:center;transition:opacity 0.5s;opacity:1;overflow:hidden;">
-        <video src="./src/assets/Creative_workspace_animation .mp4" autoplay loop muted playsinline style="position:absolute;top:0;left:0;width:100vw;height:100vh;object-fit:cover;z-index:1;"></video>
-        <div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;width:100vw;height:100vh;">
-            <div style="color:#fff;font-size:2.1rem;font-weight:700;letter-spacing:0.5px;text-shadow:0 2px 12px #000;margin-top:0;">Loading Portfolio...</div>
+    <div id="loadingWindow" class="loading-window">
+        <video src="./src/assets/Creative_workspace_animation .mp4" poster="https://picsum.photos/seed/workspace/600/600.jpg" autoplay loop muted playsinline class="loading-video"></video>
+        <div class="loading-message-container">
+            <div class="loading-message">Loading Portfolio...</div>
         </div>
     </div>
     <!-- Frost Particles -->
@@ -963,7 +1020,7 @@
             <div class="bento-grid">
                 <!-- Workspace Photo Card - Left Side -->
                 <div class="bento-item workspace-card">
-                    <video src="./src/assets/Creative_workspace_animation .mp4" autoplay loop muted playsinline poster="https://picsum.photos/seed/workspace/600/600.jpg" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:8px;"></video>
+                    <video src="./src/assets/Creative_workspace_animation .mp4" autoplay loop muted playsinline poster="https://picsum.photos/seed/workspace/600/600.jpg" class="workspace-video"></video>
                     <div class="workspace-overlay">
                     <!-- add overlay items-->
                     </div>
@@ -976,15 +1033,15 @@
                         <div class="social-name">LinkedIn</div>
                     </a>
                     <a href="https://github.com/pragadeswaran" target="_blank" class="social-item">
-                        <img src="./src/assets/github_logo.jpeg" alt="GitHub Logo" class="social-icon" style="width: 2.1rem; height: 2.1rem; object-fit: contain; margin-bottom: 8px;" />
+                        <img src="./src/assets/github_logo.jpeg" alt="GitHub Logo" class="social-icon social-img" width="34" height="34" />
                         <div class="social-name">GitHub</div>
                     </a>
                     <a href="https://leetcode.com/u/RekhanshDeshmukh/" target="_blank" class="social-item">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/LeetCode_logo_black.png" alt="LeetCode Logo" class="social-icon" style="width: 2.1rem; height: 2.1rem; object-fit: contain; margin-bottom: 8px;" />
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/LeetCode_logo_black.png" alt="LeetCode Logo" class="social-icon social-img" width="34" height="34" />
                         <div class="social-name">LeetCode</div>
                     </a>
                     <div class="social-item" style="cursor: pointer; position: relative;" onclick="copyMailAddress(event)">
-                        <img src="./src/assets/Mail_logo.png" alt="Mail Logo" class="social-icon" style="width: 2.1rem; height: 2.1rem; object-fit: contain; margin-bottom: 8px;" />
+                        <img src="./src/assets/Mail_logo.png" alt="Mail Logo" class="social-icon social-img" width="34" height="34" />
                         <div class="social-name">Mail</div>
                     </div>
                     <!-- Nested grid inside social grid -->
@@ -996,23 +1053,23 @@
                     <h2 style="font-size: 1.2rem; color: #fff; margin-bottom: 22px; margin-top: 14px; text-align: left; align-self: flex-start;">Online Badges</h2>
                     <div class="badge-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(70px, 1fr)); gap: 14px; width: 100%; justify-items: center; align-items: center;">
                         <a href="https://react.dev/" target="_blank" rel="noopener" class="badge-item" style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">
-                            <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React Badge" style="width: 60px; height: 60px; object-fit: contain; border-radius: 8px; margin-bottom: 6px; background: #222;" />
+                        <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React Badge" width="60" height="60" style="object-fit:contain;border-radius:8px;margin-bottom:6px;background:#222;" />
                             <span style="font-size: 0.8rem; color: var(--text-secondary);">React</span>
                         </a>
                         <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noopener" class="badge-item" style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">
-                            <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript Badge" style="width: 60px; height: 60px; object-fit: contain; border-radius: 8px; margin-bottom: 6px; background: #222;" />
+                        <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript Badge" width="60" height="60" style="object-fit:contain;border-radius:8px;margin-bottom:6px;background:#222;" />
                             <span style="font-size: 0.8rem; color: var(--text-secondary);">JavaScript</span>
                         </a>
                         <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" rel="noopener" class="badge-item" style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">
-                            <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5 Badge" style="width: 60px; height: 60px; object-fit: contain; border-radius: 8px; margin-bottom: 6px; background: #222;" />
+                        <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5 Badge" width="60" height="60" style="object-fit:contain;border-radius:8px;margin-bottom:6px;background:#222;" />
                             <span style="font-size: 0.8rem; color: var(--text-secondary);">HTML5</span>
                         </a>
                         <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" rel="noopener" class="badge-item" style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">
-                            <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3 Badge" style="width: 60px; height: 60px; object-fit: contain; border-radius: 8px; margin-bottom: 6px; background: #222;" />
+                        <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3 Badge" width="60" height="60" style="object-fit:contain;border-radius:8px;margin-bottom:6px;background:#222;" />
                             <span style="font-size: 0.8rem; color: var(--text-secondary);">CSS3</span>
                         </a>
                         <a href="https://nodejs.org/" target="_blank" rel="noopener" class="badge-item" style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">
-                            <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js Badge" style="width: 60px; height: 60px; object-fit: contain; border-radius: 8px; margin-bottom: 6px; background: #222;" />
+                        <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js Badge" width="60" height="60" style="object-fit:contain;border-radius:8px;margin-bottom:6px;background:#222;" />
                             <span style="font-size: 0.8rem; color: var(--text-secondary);">Node.js</span>
                         </a>
                     </div>
@@ -1234,7 +1291,7 @@
     </div>
     <!-- Copied Dialog -->
     <div id="copiedDialog" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:rgba(255, 255, 255, 0.97); color:#000000; padding:28px 38px; border-radius:14px; font-size:1.25rem; font-weight:600; z-index:9999; box-shadow:0 8px 32px rgba(0,0,0,0.25); transition: opacity 0.3s; text-align:center; letter-spacing:0.5px;">Mail Copied!</div>
-    <script>
+    <script defer>
         // Copy mail address logic
         function copyMailAddress(event) {
             const mail = "rekhansh.r.deshmukh@gmail.com";
@@ -1269,21 +1326,49 @@
             });
         });
         // Add animation on load
-        window.addEventListener('load', () => {
-            // Hide loading window
+        function hideLoadingWindow() {
             const loading = document.getElementById('loadingWindow');
-            if (loading) {
+            if (loading && loading.style.display !== 'none') {
                 loading.style.opacity = '0';
                 setTimeout(() => {
                     loading.style.display = 'none';
                 }, 500);
             }
-            const items = document.querySelectorAll('.bento-item');
-            items.forEach((item, index) => {
-                setTimeout(() => {
-                    item.style.opacity = 1;
-                    item.style.transform = 'translateY(0)';
-                }, index * 50);
+        }
+
+        // Wait for all images and videos to load before hiding loading window
+        function waitForMediaToLoad() {
+            const images = Array.from(document.images);
+            const videos = Array.from(document.querySelectorAll('video'));
+            const mediaPromises = [];
+
+            images.forEach(img => {
+                if (img.complete && img.naturalWidth !== 0) return;
+                mediaPromises.push(new Promise(resolve => {
+                    img.addEventListener('load', resolve, { once: true });
+                    img.addEventListener('error', resolve, { once: true });
+                }));
+            });
+            videos.forEach(video => {
+                if (video.readyState >= 2) return;
+                mediaPromises.push(new Promise(resolve => {
+                    video.addEventListener('loadeddata', resolve, { once: true });
+                    video.addEventListener('error', resolve, { once: true });
+                }));
+            });
+            return Promise.all(mediaPromises);
+        }
+
+        window.addEventListener('load', () => {
+            waitForMediaToLoad().then(() => {
+                hideLoadingWindow();
+                const items = document.querySelectorAll('.bento-item');
+                items.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.style.opacity = 1;
+                        item.style.transform = 'translateY(0)';
+                    }, index * 50);
+                });
             });
         });
         // Set initial state for animation
