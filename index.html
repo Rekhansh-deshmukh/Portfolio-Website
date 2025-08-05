@@ -384,6 +384,24 @@
             position: relative;
             overflow: hidden;
         }
+        .social-item-long{
+            background-color: rgba(26, 26, 26, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 22px 20 20px 0;
+            min-height: 90px;
+            width: 100px;
+            text-align: center;
+            transition: transform 0.3s, background-color 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-primary);
+            position: relative;
+            overflow: hidden;
+        }
         .social-item::before {
             content: '';
             position: absolute;
@@ -929,6 +947,13 @@
     </style>
 </head>
 <body>
+    <!-- Loading Window -->
+    <div id="loadingWindow" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(15,15,15,0.97);z-index:99999;display:flex;align-items:center;justify-content:center;transition:opacity 0.5s;opacity:1;overflow:hidden;">
+        <video src="./src/assets/Creative_workspace_animation .mp4" autoplay loop muted playsinline style="position:absolute;top:0;left:0;width:100vw;height:100vh;object-fit:cover;z-index:1;"></video>
+        <div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;width:100vw;height:100vh;">
+            <div style="color:#fff;font-size:2.1rem;font-weight:700;letter-spacing:0.5px;text-shadow:0 2px 12px #000;margin-top:0;">Loading Portfolio...</div>
+        </div>
+    </div>
     <!-- Frost Particles -->
     <div class="frost-particles" id="frostParticles"></div>
     
@@ -946,43 +971,27 @@
                 <!-- Social Grid - Directly below workspace card -->
                 <div class="social-grid">
                     <!-- First Row -->
-                    <a href="https://twitter.com/pragadeswaran" target="_blank" class="social-item">
-                        <i class="fab fa-twitter social-icon"></i>
-                        <div class="social-name">Twitter</div>
-                    </a>
-                    <a href="https://linkedin.com/in/pragadeswaran" target="_blank" class="social-item">
+                    <a href="https://www.linkedin.com/in/rekhansh-raje-deshmukh" target="_blank" class="social-item">
                         <i class="fab fa-linkedin social-icon"></i>
                         <div class="social-name">LinkedIn</div>
                     </a>
                     <a href="https://github.com/pragadeswaran" target="_blank" class="social-item">
-                        <i class="fab fa-github social-icon"></i>
+                        <img src="./src/assets/github_logo.jpeg" alt="GitHub Logo" class="social-icon" style="width: 2.1rem; height: 2.1rem; object-fit: contain; margin-bottom: 8px;" />
                         <div class="social-name">GitHub</div>
                     </a>
-                    <a href="https://dribbble.com/pragadeswaran" target="_blank" class="social-item">
-                        <i class="fab fa-dribbble social-icon"></i>
-                        <div class="social-name">Dribbble</div>
+                    <a href="https://leetcode.com/u/RekhanshDeshmukh/" target="_blank" class="social-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/LeetCode_logo_black.png" alt="LeetCode Logo" class="social-icon" style="width: 2.1rem; height: 2.1rem; object-fit: contain; margin-bottom: 8px;" />
+                        <div class="social-name">LeetCode</div>
                     </a>
-                    <!-- Second Row -->
-                    <a href="https://instagram.com/pragadeswaran" target="_blank" class="social-item">
-                        <i class="fab fa-instagram social-icon"></i>
-                        <div class="social-name">Instagram</div>
-                    </a>
-                    <a href="https://behance.net/pragadeswaran" target="_blank" class="social-item">
-                        <i class="fab fa-behance social-icon"></i>
-                        <div class="social-name">Behance</div>
-                    </a>
-                    <a href="https://youtube.com/pragadeswaran" target="_blank" class="social-item">
-                        <i class="fab fa-youtube social-icon"></i>
-                        <div class="social-name">YouTube</div>
-                    </a>
-                    <a href="https://facebook.com/pragadeswaran" target="_blank" class="social-item">
-                        <i class="fab fa-facebook social-icon"></i>
-                        <div class="social-name">Facebook</div>
-                    </a>
+                    <div class="social-item" style="cursor: pointer; position: relative;" onclick="copyMailAddress(event)">
+                        <img src="./src/assets/Mail_logo.png" alt="Mail Logo" class="social-icon" style="width: 2.1rem; height: 2.1rem; object-fit: contain; margin-bottom: 8px;" />
+                        <div class="social-name">Mail</div>
+                    </div>
+                    <!-- Nested grid inside social grid -->
+                    <div class="social-nested-grid" style="grid-column: 1 / span 4; grid-row: 2 / span 1; display: grid; grid-template-columns: 1fr; gap: 6px; margin-top: 8px;">
+                        <div class="social-nested-item" style="background: rgba(26, 26, 26, 0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 12px; padding: 22px 0 16px 0; min-height: 90px; text-align: center; color: #fff; font-size: 2rem; display: flex; align-items: center; justify-content: center;">Coming Soon</div>
+                    </div>
                 </div>
-                <!-- GitHub Activity Widget - Bottom Mid, Right of Social Grid -->
-                
-                <!-- Card to the Right Side of Social Grid -->
                 <div class="bento-item right-of-social" style="grid-column: 5 / span 4; grid-row: 3 / span 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; min-height: 120px; padding-top: 6px;">
                     <h2 style="font-size: 1.2rem; color: #fff; margin-bottom: 22px; margin-top: 14px; text-align: left; align-self: flex-start;">Online Badges</h2>
                     <div class="badge-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(70px, 1fr)); gap: 14px; width: 100%; justify-items: center; align-items: center;">
@@ -1223,7 +1232,29 @@
         </main>
         <!-- footer removed -->
     </div>
+    <!-- Copied Dialog -->
+    <div id="copiedDialog" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:rgba(255, 255, 255, 0.97); color:#000000; padding:28px 38px; border-radius:14px; font-size:1.25rem; font-weight:600; z-index:9999; box-shadow:0 8px 32px rgba(0,0,0,0.25); transition: opacity 0.3s; text-align:center; letter-spacing:0.5px;">Mail Copied!</div>
     <script>
+        // Copy mail address logic
+        function copyMailAddress(event) {
+            const mail = "rekhansh.r.deshmukh@gmail.com";
+            navigator.clipboard.writeText(mail);
+            showCopiedDialog();
+        }
+
+        function showCopiedDialog() {
+            const dialog = document.getElementById('copiedDialog');
+            if (!dialog) return;
+            dialog.style.display = 'block';
+            dialog.style.opacity = '1';
+            setTimeout(() => {
+                dialog.style.opacity = '0';
+            }, 1000);
+            setTimeout(() => {
+                dialog.style.display = 'none';
+                dialog.style.opacity = '1';
+            }, 1300);
+        }
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1239,6 +1270,14 @@
         });
         // Add animation on load
         window.addEventListener('load', () => {
+            // Hide loading window
+            const loading = document.getElementById('loadingWindow');
+            if (loading) {
+                loading.style.opacity = '0';
+                setTimeout(() => {
+                    loading.style.display = 'none';
+                }, 500);
+            }
             const items = document.querySelectorAll('.bento-item');
             items.forEach((item, index) => {
                 setTimeout(() => {
