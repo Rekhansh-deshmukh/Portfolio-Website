@@ -6,6 +6,7 @@
     <title>Rekhansh Raje Deshmukh Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.0/lottie.min.js"></script>
     <style>
     /* Optimization: Move loading window and video styles to CSS */
     .loading-window {
@@ -14,7 +15,7 @@
         left: 0;
         width: 100vw;
         height: 100vh;
-        background: rgba(15,15,15,0.97);
+        background: #000;
         z-index: 99999;
         display: flex;
         align-items: center;
@@ -81,7 +82,6 @@
         }
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.4;
             overflow: hidden;
@@ -92,43 +92,7 @@
             background-attachment: fixed;
             position: relative;
         }
-        /* Frost Effect */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, 
-                rgba(173, 216, 230, 0.2) 0%, 
-                rgba(135, 206, 235, 0.15) 25%, 
-                rgba(176, 224, 230, 0.2) 50%, 
-                rgba(175, 238, 238, 0.15) 75%, 
-                rgba(224, 255, 255, 0.2) 100%);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: -1;
-            animation: frostShift 20s ease-in-out infinite;
-        }
-        @keyframes frostShift {
-            0%, 100% {
-                background: linear-gradient(135deg, 
-                    rgba(173, 216, 230, 0.2) 0%, 
-                    rgba(135, 206, 235, 0.15) 25%, 
-                    rgba(176, 224, 230, 0.2) 50%, 
-                    rgba(175, 238, 238, 0.15) 75%, 
-                    rgba(224, 255, 255, 0.2) 100%);
-            }
-            50% {
-                background: linear-gradient(135deg, 
-                    rgba(224, 255, 255, 0.2) 0%, 
-                    rgba(173, 216, 230, 0.15) 25%, 
-                    rgba(135, 206, 235, 0.2) 50%, 
-                    rgba(176, 224, 230, 0.15) 75%, 
-                    rgba(175, 238, 238, 0.2) 100%);
-            }
-        }
+        /* Frost Effect removed */
         /* Frost Particles */
         .frost-particles {
             position: fixed;
@@ -991,10 +955,8 @@
 <body>
     <!-- Loading Window -->
     <div id="loadingWindow" class="loading-window">
-        <video src="./src/assets/Creative_workspace_animation .mp4" poster="https://picsum.photos/seed/workspace/600/600.jpg" autoplay loop muted playsinline class="loading-video"></video>
-        <div class="loading-message-container">
-            <div class="loading-message">Loading Portfolio...</div>
-        </div>
+        <div id="lottie-loading" style="width:480px;height:480px;z-index:2;"></div>
+        <!-- Removed loading message text -->
     </div>
     <!-- Frost Particles -->
     <div class="frost-particles" id="frostParticles"></div>
@@ -1321,10 +1283,9 @@
             }
         }
 
-        // Wait for all images and videos to load before hiding loading window
+        // Wait for all images to load before hiding loading window
         function waitForMediaToLoad() {
             const images = Array.from(document.images);
-            const videos = Array.from(document.querySelectorAll('video'));
             const mediaPromises = [];
 
             images.forEach(img => {
@@ -1334,15 +1295,21 @@
                     img.addEventListener('error', resolve, { once: true });
                 }));
             });
-            videos.forEach(video => {
-                if (video.readyState >= 2) return;
-                mediaPromises.push(new Promise(resolve => {
-                    video.addEventListener('loadeddata', resolve, { once: true });
-                    video.addEventListener('error', resolve, { once: true });
-                }));
-            });
             return Promise.all(mediaPromises);
         }
+
+        // Lottie loading animation
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.lottie) {
+                lottie.loadAnimation({
+                    container: document.getElementById('lottie-loading'),
+                    renderer: 'svg',
+                    loop: true,
+                    autoplay: true,
+                    path: './src/assets/musician-in-studio.json'
+                });
+            }
+        });
 
         window.addEventListener('load', () => {
             waitForMediaToLoad().then(() => {
